@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require('axios').default;
 
 axios.defaults.headers.common["x-api-key"] = "live_Nr40dtUvvL4PmZwxtm4ziWL4qBUHv1wIfeZ1g3M1rFg8M7xwgfrD5TGoEwEiKrnp";
 
