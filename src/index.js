@@ -37,10 +37,15 @@ function makeMarkOptions(arr) {
 };
 
 function makeMarkCard({name, description, temperament}, {url}) {
-    console.log('name',name);
-    console.log('descr',description);
-    console.log('temperam',temperament); 
-    console.log('url',url); 
+    return 
+    refs.div.innerHtml = `
+    <img src="${url}" alt="${name}" />
+    <div class="descrp-card">
+    <p class="title-card">${name}</p>
+    <p class="description">${description}</p>
+    <p class="temerament">${temperament}</p>
+    </div>
+    `
     
 }
 
