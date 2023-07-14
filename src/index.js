@@ -1,5 +1,6 @@
 import { fetchBreeds, fetchCatByBreed }  from './cat-api'
-
+import SlimSelect from 'slim-select'
+import 'slim-select/dist/slimselect.css';
 const refs = {
     selected: document.querySelector('.breed-select'),
     loader: document.querySelector('.loader'),
@@ -8,6 +9,7 @@ const refs = {
 }
 
 refs.selected.addEventListener('change', onSelect);
+refs.selected.setAttribute("id", "slim-select");
 
 function onSelect(event) {
     fetchCatByBreed(event.target.value)
@@ -22,7 +24,11 @@ function onSelect(event) {
 };
 
 fetchBreeds().then((response) => {
-        makeMarkOptions(response.data)
+    makeMarkOptions(response.data)
+     new SlimSelect({
+            select: '#slim-select',
+    
+        });
         }).catch((error) => {
 
         }).finally(); 
@@ -32,20 +38,19 @@ function makeMarkOptions(arr) {
     return arr.forEach(({name, id}) => {
     let markUp = `<option value="${id}">${name}</option>`;
     refs.selected.insertAdjacentHTML('beforeend', markUp);
-    
-});
+     
+    });
+      
 };
 
 function makeMarkCard({name, description, temperament}, {url}) {
-    return 
-    refs.div.innerHtml = `
-    <img src="${url}" alt="${name}" />
+    let markUp = `
+    <img src="${url}" alt="${name}" width="460px"/>
     <div class="descrp-card">
     <p class="title-card">${name}</p>
     <p class="description">${description}</p>
     <p class="temerament">${temperament}</p>
-    </div>
-    `
-    
+    </div>`;
+    refs.div.innerHTML = markUp;
 }
 
